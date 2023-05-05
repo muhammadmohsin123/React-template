@@ -1,7 +1,7 @@
 import React from 'react';
-
+import { Box } from '@mui/material';
 function CompanyProfile() {
-  return <div>Comming Soon!</div>;
+  return <Box sx={{ width: '100px', background: 'red' }}>Comming Soon!</Box>;
 }
 
 export default CompanyProfile;
