@@ -56,6 +56,10 @@ function MenuComponent({ anchorEl, handleClose }) {
             ml: -0.5,
             mr: 1,
           },
+          '& .MuiMenuItem-root:hover': {
+            color: '#7367f0',
+            background: 'rgba(115, 103, 240, 0.12)',
+          },
         },
       }}
       transformOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -64,7 +68,11 @@ function MenuComponent({ anchorEl, handleClose }) {
       {menuItems.map((item, index) => (
         <MenuItem key={index} onClick={handleClose}>
           <ListItemIcon>{item.icon}</ListItemIcon>
-          <Typography variant='inherit' noWrap>
+          <Typography
+            sx={{ color: '#6e6b7b', fontSize: '14px' }}
+            variant='inherit'
+            noWrap
+          >
             {item.label}
           </Typography>
         </MenuItem>

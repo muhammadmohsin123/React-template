@@ -11,10 +11,11 @@ import {
 } from '@mui/material';
 import { Brightness4, Brightness7 } from '@mui/icons-material';
 import MenuComponent from './components/MenuComponent';
+import { useSelector } from 'react-redux';
 function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  const user = useSelector((state) => state.user.userData);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,12 +37,12 @@ function Header() {
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'flex-start',
+            alignItems: 'flex-end',
             flexDirection: 'column',
           }}
         >
-          <Typography variant='p'>Muhammad Mohsin</Typography>
-          <Typography variant='p'>Admin</Typography>
+          <Typography variant='p'>{user.fullname}</Typography>
+          <Typography variant='p'></Typography>
         </Box>
         <IconButton onClick={handleClick} sx={{ mr: 2 }}>
           <Avatar>A</Avatar>

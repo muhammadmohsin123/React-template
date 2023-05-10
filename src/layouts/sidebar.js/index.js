@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -6,31 +6,15 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  Grid,
 } from '@mui/material';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import BusinessIcon from '@mui/icons-material/Business';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import { SIDEBAR_ITEMS } from '../navigation/veritical';
 import { useLocation, useNavigate } from 'react-router-dom';
+import invoteam_logo from '../../assets/invoteam-logo-dark.svg';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const SIDEBAR_WIDTH = 260;
-
-const SIDEBAR_ITEMS = [
-  {
-    path: '/dashboard',
-    label: 'Dashboard',
-    icon: <DashboardIcon />,
-  },
-  {
-    path: '/company-profile',
-    label: 'Company Profile',
-    icon: <AssignmentIcon />,
-  },
-  {
-    path: '/projects',
-    label: 'Projects',
-    icon: <BusinessIcon />,
-  },
-];
 
 const sidebarItemStyles = (isSelected) => ({
   background: isSelected
@@ -44,21 +28,45 @@ const sidebarItemStyles = (isSelected) => ({
 function SideBar() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   return (
     <Box
       sx={{
         position: 'sticky',
         top: 0,
-        width: SIDEBAR_WIDTH,
+        width: isCollapsed ? '50px' : SIDEBAR_WIDTH,
         height: '100vh',
         background: '#fff',
         boxShadow: '0 0 15px 0 rgba(34,41,47,.05)',
         color: '#6e6b7b',
         paddingLeft: '10px',
         paddingRight: '10px',
+        transition: 'width 0.3s ease-in-out',
       }}
     >
+      <Grid container mt={2} justifyContent='center' alignContent='center'>
+        {!isCollapsed ? (
+          <Grid item>
+            <img src={invoteam_logo} alt='Invoteam Logo' />
+          </Grid>
+        ) : null}
+
+        {!isCollapsed && <Grid item sx={{ flexGrow: 1 }} />}
+        <Grid item>
+          <Box
+            pt={2}
+            onClick={handleCollapse}
+            sx={{ cursor: 'pointer', display: 'flex' }}
+          >
+            {isCollapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </Box>
+        </Grid>
+      </Grid>
       <List>
         {SIDEBAR_ITEMS.map(({ path, label, icon }) => (
           <ListItem
@@ -69,7 +77,7 @@ function SideBar() {
             onClick={() => navigate(path)}
           >
             <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={label} />
+            {!isCollapsed && <ListItemText primary={label} />}
           </ListItem>
         ))}
       </List>
