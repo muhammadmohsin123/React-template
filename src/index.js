@@ -7,6 +7,8 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const theme = createTheme({
   typography: {
     fontFamily: 'Montserrat', // replace with your desired font family
@@ -18,6 +20,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
+        <ToastContainer />
         <App />
       </ThemeProvider>
     </Provider>

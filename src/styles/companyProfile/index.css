@@ -1,0 +1,70 @@
+.card {
+  background: #ffffff;
+  box-shadow: 0px 4px 18px rgba(75, 70, 92, 0.1);
+  border-radius: 6px;
+  padding: 20px 20px;
+}
+.heading {
+  width: 1080px;
+  /* Light/Basic Typography/H4 Heading */
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+
+  color: #4b465c;
+}
+
+.inputElement {
+  padding-left: 10px;
+  width: 100%;
+
+  height: 38px;
+  background: #ffffff;
+  border: 1px solid #dbdade;
+  border-radius: 6px;
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  width: 76px;
+  height: 38px;
+
+  background: #7367f0;
+  /* Light/Gray/Gray - SM */
+  border: none;
+  box-shadow: 0px 2px 4px rgba(165, 163, 174, 0.3);
+  border-radius: 6px;
+  cursor: pointer;
+  /* Inside auto layout */
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.error {
+  background-color: #ffe0e0;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+}
+.label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #6e6b7b;
+}

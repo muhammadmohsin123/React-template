@@ -4,14 +4,24 @@ import Header from './header';
 import Footer from './footer';
 import PageLayout from './pageLayout';
 import { Grid, Box, Container } from '@mui/material';
-import useAuth from '../hookss/auth/useAuth';
+import useAuth from '../hooks/auth/useAuth';
 import { useNavigate } from 'react-router-dom';
-
+import { getData } from '../store/slice/userSlice';
+import { useDispatch } from 'react-redux';
+import useUrlParams from '../hooks/auth/useUrlParams';
 const AppLayout = (props) => {
-  const { userId } = useAuth();
+  const { userId } = useUrlParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const token = localStorage.getItem('accessToken');
   useEffect(() => {
-    if (userId) {
+    if (token) {
+      dispatch(getData());
+    }
+  }, []);
+  useEffect(() => {
+    if (token) {
       navigate('/dashboard');
     }
   }, [userId]);
@@ -23,7 +33,7 @@ const AppLayout = (props) => {
           {/* App Content  */}
           <Box mb={4} />
           <Outlet />
-          <Footer />
+          {/* <Footer /> */}
         </PageLayout>
       </div>
     </>

@@ -19,19 +19,62 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import HelpIcon from '@mui/icons-material/Help';
 import MailIcon from '@mui/icons-material/Mail';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { logout } from '../../../store/slice/userSlice';
+import { useDispatch } from 'react-redux';
 
-const menuItems = [
-  { label: 'Profile', icon: <AccountCircleIcon /> },
-  { label: 'Inbox', icon: <MailIcon /> },
-  { label: 'Tasks', icon: <AssignmentIcon /> },
-  { label: 'Chats', icon: <ChatIcon /> },
-  { label: 'Settings', icon: <SettingsIcon /> },
-  { label: 'Pricing', icon: <AttachMoneyIcon /> },
-  { label: 'FAQ', icon: <HelpIcon /> },
-  { label: 'Logout', icon: <ExitToAppIcon /> },
-];
-
+import { useNavigate } from 'react-router-dom';
 function MenuComponent({ anchorEl, handleClose }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    window.location.href = 'https://invoteams.invo.zone/';
+    handleClose();
+  };
+
+  const menuItems = [
+    {
+      label: 'Profile',
+      icon: <AccountCircleIcon />,
+      onClick: () => console.log('Clicked Profile'),
+    },
+    {
+      label: 'Inbox',
+      icon: <MailIcon />,
+      onClick: () => console.log('Clicked Inbox'),
+    },
+    {
+      label: 'Tasks',
+      icon: <AssignmentIcon />,
+      onClick: () => console.log('Clicked Tasks'),
+    },
+    {
+      label: 'Chats',
+      icon: <ChatIcon />,
+      onClick: () => console.log('Clicked Chats'),
+    },
+    {
+      label: 'Settings',
+      icon: <SettingsIcon />,
+      onClick: () => console.log('Clicked Settings'),
+    },
+    {
+      label: 'Pricing',
+      icon: <AttachMoneyIcon />,
+      onClick: () => console.log('Clicked Pricing'),
+    },
+    {
+      label: 'FAQ',
+      icon: <HelpIcon />,
+      onClick: () => console.log('Clicked FAQ'),
+    },
+    {
+      label: 'Logout',
+      icon: <ExitToAppIcon />,
+      onClick: () => handleLogout(),
+    },
+  ];
   const open = Boolean(anchorEl);
   return (
     <Menu
@@ -66,7 +109,7 @@ function MenuComponent({ anchorEl, handleClose }) {
       anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
     >
       {menuItems.map((item, index) => (
-        <MenuItem key={index} onClick={handleClose}>
+        <MenuItem key={index} onClick={item.onClick}>
           <ListItemIcon>{item.icon}</ListItemIcon>
           <Typography
             sx={{ color: '#6e6b7b', fontSize: '14px' }}

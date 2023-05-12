@@ -13,11 +13,15 @@ const useUrlParams = () => {
 
     if (userIdParam) {
       setUserId(userIdParam);
+      localStorage.setItem('userId', userIdParam);
+      localStorage.setItem('accessToken', accessTokenParam);
     }
 
     if (accessTokenParam) {
       setAccessToken(accessTokenParam);
-      dispatch(getUserTocken({ accessToken: accessTokenParam }));
+      dispatch(
+        getUserTocken({ accessToken: accessTokenParam, userId: userIdParam })
+      );
     }
   }, []);
 

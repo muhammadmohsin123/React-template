@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Dashboard from '../pages/dashboard';
 import CompanyProfile from '../pages/companyProfile';
 import AppLayout from '../layouts/appLayout';
-
+import Projects from '../pages/projects';
 export const Router = createBrowserRouter([
   {
     path: '/',
@@ -16,6 +16,10 @@ export const Router = createBrowserRouter([
       {
         path: 'company-profile',
         element: <CompanyProfile />,
+      },
+      {
+        path: 'projects',
+        element: <Projects />,
       },
     ],
   },
