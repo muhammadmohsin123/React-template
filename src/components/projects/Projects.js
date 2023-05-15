@@ -1,5 +1,5 @@
 import React from 'react';
-import CreatePeojects from './CreatePeoject';
+import CreatePeojects from './CreateProject';
 import ProjectsList from './ProjectsList';
 import { Box } from '@mui/system';
 function Projects() {

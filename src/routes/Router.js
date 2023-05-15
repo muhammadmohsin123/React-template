@@ -4,6 +4,7 @@ import Dashboard from '../pages/dashboard';
 import CompanyProfile from '../pages/companyProfile';
 import AppLayout from '../layouts/appLayout';
 import Projects from '../pages/projects';
+import CreateProject from '../pages/createProject';
 export const Router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +21,10 @@ export const Router = createBrowserRouter([
       {
         path: 'projects',
         element: <Projects />,
+      },
+      {
+        path: 'createProject',
+        element: <CreateProject />,
       },
     ],
   },
